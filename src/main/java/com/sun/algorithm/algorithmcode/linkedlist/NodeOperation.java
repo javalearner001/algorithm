@@ -12,7 +12,8 @@ public class NodeOperation {
         SingleNode singleNode5 = SingleNodeFactory.getSingleNode5();
 
         //SingleNode node = deleteNode(singleNode5,5);
-        SingleNode node = addNode(singleNode5, 5,new SingleNode(8,null));
+        //SingleNode node = addNode(singleNode5, 5,new SingleNode(8,null));
+        SingleNode node = deleteAndAdd(singleNode5,3);
         while (node != null){
             System.out.println(node.getValue());
             node = node.getNext();
@@ -78,5 +79,22 @@ public class NodeOperation {
         }
 
         return singleNode;
+    }
+
+    private static SingleNode deleteAndAdd(SingleNode singleNode , int value){
+
+        SingleNode preNode = singleNode;
+        SingleNode currNode = singleNode.getNext();
+
+        while (currNode != null){
+            if (currNode.getValue() == value){
+                preNode.setNext(currNode.getNext());
+                currNode.setNext(singleNode);
+                break;
+            }
+            preNode = preNode.getNext();
+            currNode = currNode.getNext();
+        }
+        return currNode;
     }
 }
